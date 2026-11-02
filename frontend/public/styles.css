@@ -1,0 +1,146 @@
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 20px;
+  background: #eef2f7;
+  color: #26334b;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 28px;
+  background: white;
+  border: 1px solid #dfe5ef;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px #26334b0d;
+}
+
+h1,
+h2,
+h3 {
+  color: #3157a4;
+}
+
+section {
+  margin-top: 30px;
+}
+
+form {
+  max-width: 400px;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #dfe5ef;
+  border-radius: 10px;
+  background: #f8faff;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+input:not([type="checkbox"]):not([type="hidden"]) {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+}
+
+input:focus-visible {
+  outline: 2px solid #bfdbfe;
+  border-color: #3157a4;
+}
+
+button {
+  margin: 3px;
+  padding: 7px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: white;
+  color: #26334b;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e8eefb;
+}
+
+button[type="submit"] {
+  background: #3157a4;
+  border-color: #3157a4;
+  color: white;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #dfe5ef;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+th {
+  background: #edf2fb;
+}
+
+tbody tr:hover {
+  background: #f8faff;
+}
+
+#message,
+.form-message {
+  color: #b00020;
+  overflow-wrap: anywhere;
+}
+
+dialog {
+  box-sizing: border-box;
+  width: min(460px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  padding: 0;
+  border: 1px solid #dfe5ef;
+  border-radius: 12px;
+  color: inherit;
+  box-shadow: 0 16px 48px #26334b33;
+}
+
+dialog::backdrop {
+  background: #172b4d66;
+}
+
+dialog form {
+  margin: 0;
+  padding: 22px;
+  max-width: none;
+  border: 0;
+}
+
+button.danger {
+  color: #b00020;
+  border-color: #efb8bd;
+}

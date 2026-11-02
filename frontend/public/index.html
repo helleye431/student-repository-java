@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Студенты</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Учёт студентов</h1>
+    <p id="message" role="alert"></p>
+
+    <form id="login-form" method="post">
+      <h2>Вход</h2>
+      <label>
+        Email
+        <input name="email" type="email" autocomplete="username" required>
+      </label>
+      <label>
+        Пароль
+        <input name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <button type="submit">Войти</button>
+    </form>
+
+    <div id="app" hidden>
+      <p>
+        <span id="account"></span>
+        <button type="button" id="logout">Выйти</button>
+      </p>
+
+      <section id="students" hidden>
+        <h2>Студенты</h2>
+        <button type="button" id="add-student">Добавить студента</button>
+        <button type="button" id="refresh-students">Обновить</button>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="student-rows"></tbody>
+          </table>
+        </div>
+
+        <dialog id="student-modal" aria-labelledby="student-title">
+          <form id="student-form" method="post">
+            <h3 id="student-title">Данные студента</h3>
+            <p class="form-message" role="alert"></p>
+            <input name="id" type="hidden">
+            <label>
+              Имя
+              <input name="name" required>
+            </label>
+            <label>
+              Фамилия
+              <input name="surname" required>
+            </label>
+            <label>
+              Email
+              <input name="email" type="email">
+            </label>
+            <label>
+              Телефон
+              <input name="phoneNumber" type="tel">
+            </label>
+            <button type="submit">Сохранить</button>
+            <button type="button" id="delete-student" class="danger" hidden>Удалить</button>
+            <button type="button" id="close-student">Закрыть</button>
+          </form>
+        </dialog>
+      </section>
+
+      <section id="users" hidden>
+        <h2>Пользователи</h2>
+        <button type="button" id="add-user">Добавить пользователя</button>
+        <button type="button" id="refresh-users">Обновить</button>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Роли</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="user-rows"></tbody>
+          </table>
+        </div>
+
+        <dialog id="user-modal" aria-labelledby="user-title">
+          <form id="user-form" method="post">
+            <h3 id="user-title">Данные пользователя</h3>
+            <p class="form-message" role="alert"></p>
+            <input name="id" type="hidden">
+            <label>
+              Email
+              <input name="email" type="email" required>
+            </label>
+            <label id="user-password">
+              Пароль
+              <input name="password" type="password" autocomplete="new-password" maxlength="72" required>
+            </label>
+            <fieldset>
+              <legend>Роли</legend>
+              <label>
+                <input name="roles" type="checkbox" value="TEACHER">
+                Преподаватель
+              </label>
+              <label>
+                <input name="roles" type="checkbox" value="ADMIN">
+                Администратор
+              </label>
+              <label>
+                <input name="roles" type="checkbox" value="SUPER_ADMIN">
+                Суперадминистратор
+              </label>
+            </fieldset>
+            <button type="submit">Сохранить</button>
+            <button type="button" id="delete-user" class="danger" hidden>Удалить</button>
+            <button type="button" id="close-user">Закрыть</button>
+          </form>
+        </dialog>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
