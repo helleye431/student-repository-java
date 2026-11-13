@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.MessageFormat;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -30,10 +31,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean register(UserRequest userRequest) {
-        User user = userMapper.toEntity(userRequest);
-        if (user == null || user.getEmail() == null) {
+        if (userRequest == null || userRequest.getEmail() == null) {
             return false;
         }
+        User user = userMapper.toEntity(userRequest);
         if (userRepository.existsByEmail(user.getEmail())) {
             return false;
         }
@@ -75,11 +76,17 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public UserResponse updateUser(UserRequest userRequest) {
-        User existedUser = findByEmail(userRequest.getEmail());
+    public UserResponse updateUser(Long id, UserRequest userRequest) {
+        User existedUser = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(
+                MessageFormat.format("User with ID {0} not found!", id)));
+        if (!Objects.equals(existedUser.getEmail(), userRequest.getEmail())
+                && userRepository.existsByEmail(userRequest.getEmail())) {
+            throw new EmailAlreadyExistsException(
+                    MessageFormat.format("Email {0} is already exists", userRequest.getEmail()));
+        }
         existedUser.setEmail(userRequest.getEmail());
         existedUser.setRoles(userRequest.getRoles());
-        return null;
+        return userMapper.toResponse(existedUser);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.student.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -13,5 +14,16 @@ public class GlobalExceptionHandler {
     public ResponseEntity<AppError> catchEntityNotFoundException(EntityNotFoundException e) {
         log.error(e.getMessage(), e);
         return new ResponseEntity<>(new AppError(HttpStatus.NOT_FOUND.value(), e.getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<AppError> catchEmailAlreadyExistsException(EmailAlreadyExistsException e) {
+        return new ResponseEntity<>(new AppError(HttpStatus.CONFLICT.value(), e.getMessage()), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<AppError> catchAuthenticationException(AuthenticationException e) {
+        return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Invalid email or password"),
+                HttpStatus.UNAUTHORIZED);
     }
 }

@@ -3,13 +3,10 @@ package com.example.student.controller;
 import com.example.student.dto.user.UserRequest;
 import com.example.student.dto.user.UserResponse;
 import com.example.student.dto.user.UserResponseList;
-import com.example.student.mapper.UserMapper;
 import com.example.student.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -24,8 +21,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserResponse updateUser(@RequestBody UserRequest userRequest) {
-        return userService.updateUser(userRequest);
+    public UserResponse updateUser(@PathVariable Long id, @RequestBody UserRequest userRequest) {
+        return userService.updateUser(id, userRequest);
     }
 
     @PostMapping("/save")
